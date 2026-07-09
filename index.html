@@ -51,6 +51,18 @@
     --lidl-blue-light: #7cb2ff;
 }
 
+html.dark body {
+    background-color: #121824 !important;
+    background-image: 
+        linear-gradient(65deg, transparent 45%, rgba(255, 255, 255, 0.08) 45%, rgba(255, 255, 255, 0.08) 45.2%, transparent 45.2%),
+        linear-gradient(145deg, transparent 65%, rgba(255, 255, 255, 0.06) 65%, rgba(255, 255, 255, 0.06) 65.2%, transparent 65.2%),
+        linear-gradient(145deg, transparent 35%, rgba(255, 255, 255, 0.04) 35%, rgba(255, 255, 255, 0.04) 35.2%, transparent 35.2%),
+        linear-gradient(65deg, transparent 42%, rgba(0, 0, 0, 0.25) 45%, transparent 48%),
+        linear-gradient(125deg, transparent 52%, rgba(0, 0, 0, 0.35) 55%, transparent 58%),
+        linear-gradient(125deg, #121824 0%, #121824 55%, #182030 55%, #182030 100%) !important;
+    background-size: 100% 100% !important;
+}
+
 @keyframes mic-pulse {
     0% { transform: scale(1); color: #ef4444; box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.4); }
     70% { transform: scale(1.2); color: #ef4444; box-shadow: 0 0 0 8px rgba(239, 68, 68, 0); }
@@ -184,7 +196,16 @@ html.dark .border-gray-200 {
 
 body {
     font-family: 'Inter', system-ui, sans-serif;
-    background-color: var(--bg-color);
+    background-color: #f1f5f9;
+    background-image: 
+        linear-gradient(65deg, transparent 45%, rgba(0, 0, 0, 0.04) 45%, rgba(0, 0, 0, 0.04) 45.2%, transparent 45.2%),
+        linear-gradient(145deg, transparent 65%, rgba(0, 0, 0, 0.03) 65%, rgba(0, 0, 0, 0.03) 65.2%, transparent 65.2%),
+        linear-gradient(145deg, transparent 35%, rgba(0, 0, 0, 0.02) 35%, rgba(0, 0, 0, 0.02) 35.2%, transparent 35.2%),
+        linear-gradient(65deg, transparent 42%, rgba(0, 0, 0, 0.02) 45%, transparent 48%),
+        linear-gradient(125deg, transparent 52%, rgba(0, 0, 0, 0.04) 55%, transparent 58%),
+        linear-gradient(125deg, #f1f5f9 0%, #f1f5f9 55%, #e2e8f0 55%, #e2e8f0 100%) !important;
+    background-size: 100% 100% !important;
+    background-attachment: fixed !important;
     color: var(--text-color);
     transition: background-color 0.3s ease, color 0.3s ease;
     -webkit-font-smoothing: antialiased;
@@ -352,14 +373,16 @@ body p { margin-bottom: 1rem; line-height: 1.5; color: inherit; opacity: 0.9; }
     }
 }
 
-.nav-card:hover, .quick-action-btn:hover {
+.nav-card:hover {
     transform: translateY(-6px) scale(1.02);
-    box-shadow: 0 20px 35px -10px rgba(255, 215, 0, 0.25), 0 0 15px 2px rgba(255, 215, 0, 0.1);
-    border-color: var(--lidl-yellow);
+    border-color: var(--lidl-yellow) !important;
+    background: radial-gradient(circle at center, rgba(0, 80, 170, 0.08) 0%, var(--card-bg) 100%) !important;
+    box-shadow: 0 20px 35px -10px rgba(0, 80, 170, 0.25), 0 0 20px 4px rgba(255, 215, 0, 0.2), inset 0 0 12px rgba(255, 215, 0, 0.1) !important;
 }
-html.dark .nav-card:hover, html.dark .quick-action-btn:hover {
-    box-shadow: 0 20px 35px -10px rgba(255, 215, 0, 0.15), 0 0 15px 2px rgba(255, 215, 0, 0.05);
-    border-color: var(--lidl-yellow);
+html.dark .nav-card:hover {
+    background: radial-gradient(circle at center, rgba(79, 150, 255, 0.15) 0%, var(--card-bg) 100%) !important;
+    box-shadow: 0 20px 35px -10px rgba(79, 150, 255, 0.4), 0 0 20px 4px rgba(255, 215, 0, 0.35), inset 0 0 15px rgba(255, 215, 0, 0.15) !important;
+    border-color: var(--lidl-yellow) !important;
 }
 
 .nav-card svg {
@@ -367,8 +390,19 @@ html.dark .nav-card:hover, html.dark .quick-action-btn:hover {
     height: 48px;
     color: var(--lidl-blue);
     margin-bottom: 12px;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), filter 0.3s ease, color 0.3s ease;
 }
 .dark .nav-card svg { color: #bfdbfe; }
+
+.nav-card:hover svg {
+    transform: scale(1.12);
+    color: var(--lidl-blue-light) !important;
+    filter: drop-shadow(0 0 10px var(--lidl-blue)) brightness(1.2);
+}
+html.dark .nav-card:hover svg {
+    color: #60a5fa !important;
+    filter: drop-shadow(0 0 12px rgba(96, 165, 250, 0.8)) brightness(1.3);
+}
 
 /* Quick Actions specific */
 .quick-action-btn {
@@ -380,21 +414,33 @@ html.dark .nav-card:hover, html.dark .quick-action-btn:hover {
     border-radius: 16px;
     box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
     cursor: pointer;
-    transition: transform 0.2s, box-shadow 0.2s;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease, background 0.3s ease;
     min-height: 180px;
 }
 .quick-action-btn:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.15), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    transform: translateY(-6px) scale(1.02);
 }
 .quick-action-btn.red { background: linear-gradient(135deg, #ef4444, #b91c1c); color: white; border: none; }
+.quick-action-btn.red:hover {
+    background: radial-gradient(circle at center, #f87171 0%, #b91c1c 100%) !important;
+    box-shadow: 0 20px 35px -10px rgba(239, 68, 68, 0.6), 0 0 20px 4px rgba(239, 68, 68, 0.3), inset 0 0 15px rgba(255, 255, 255, 0.25) !important;
+}
 .quick-action-btn.blue { background: linear-gradient(135deg, #3b82f6, #1d4ed8); color: white; border: none; }
+.quick-action-btn.blue:hover {
+    background: radial-gradient(circle at center, #60a5fa 0%, #1d4ed8 100%) !important;
+    box-shadow: 0 20px 35px -10px rgba(59, 130, 246, 0.6), 0 0 20px 4px rgba(59, 130, 246, 0.3), inset 0 0 15px rgba(255, 255, 255, 0.25) !important;
+}
 .quick-action-btn.lidl { background: var(--lidl-blue); color: white; border: none; }
 .quick-action-btn svg { 
     width: 48px; 
     height: 48px; 
     color: white; 
     margin-bottom: 16px; 
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), filter 0.3s ease;
+}
+.quick-action-btn:hover svg {
+    transform: scale(1.12);
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.8)) brightness(1.2);
 }
 .quick-action-btn h3 {
     font-size: 1.25rem;
@@ -407,6 +453,126 @@ html.dark .nav-card:hover, html.dark .quick-action-btn:hover {
     opacity: 0.9;
     margin-bottom: 0;
     color: white;
+}
+
+/* Custom sub-tiles in emergency/accident modals */
+.nav-card.red-tile, .nav-card.yellow-tile {
+    padding: 30px 20px;
+    border-radius: 20px !important;
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.3s ease, background 0.3s ease, box-shadow 0.3s ease !important;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.tile-emoji {
+    font-size: 3rem;
+    margin-bottom: 8px;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), filter 0.3s ease;
+}
+
+.nav-card.red-tile {
+    background: rgba(239, 68, 68, 0.04) !important;
+    border: 1px solid rgba(239, 68, 68, 0.25) !important;
+    border-top: 4px solid #ef4444 !important;
+}
+.nav-card.red-tile:hover {
+    transform: translateY(-6px) scale(1.02);
+    border-color: #ef4444 !important;
+    background: radial-gradient(circle at center, rgba(239, 68, 68, 0.12) 0%, rgba(239, 68, 68, 0.04) 100%) !important;
+    box-shadow: 0 20px 35px -10px rgba(239, 68, 68, 0.5), 0 0 20px 4px rgba(239, 68, 68, 0.25) !important;
+}
+.nav-card.red-tile:hover .tile-emoji {
+    transform: scale(1.15);
+    filter: drop-shadow(0 0 10px rgba(239, 68, 68, 0.6));
+}
+
+.nav-card.yellow-tile {
+    background: rgba(255, 215, 0, 0.03) !important;
+    border: 1px solid rgba(255, 215, 0, 0.2) !important;
+    border-top: 4px solid var(--lidl-yellow) !important;
+}
+.nav-card.yellow-tile:hover {
+    transform: translateY(-6px) scale(1.02);
+    border-color: var(--lidl-yellow) !important;
+    background: radial-gradient(circle at center, rgba(255, 215, 0, 0.1) 0%, rgba(255, 215, 0, 0.03) 100%) !important;
+    box-shadow: 0 20px 35px -10px rgba(255, 215, 0, 0.3), 0 0 20px 4px rgba(255, 215, 0, 0.2) !important;
+}
+.nav-card.yellow-tile:hover .tile-emoji {
+    transform: scale(1.15);
+    filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.6));
+}
+
+/* Inner modal sections transformed to premium tiles */
+.modal-body div.bg-white, 
+.modal-body div.bg-yellow-50, 
+.modal-body div.bg-red-50,
+.modal-body div.bg-green-50 {
+    background: var(--card-bg) !important;
+    border: 1px solid var(--card-border) !important;
+    border-radius: 20px !important;
+    box-shadow: var(--shadow) !important;
+    color: var(--text-color) !important;
+    padding: 16px 20px !important;
+    margin-bottom: 16px !important;
+}
+
+/* Accordion premium tiles styling */
+.accordion-item {
+    border: none !important;
+    background: transparent !important;
+    margin-bottom: 12px !important;
+}
+
+.accordion-header {
+    background: var(--card-bg) !important;
+    border: 1px solid var(--card-border) !important;
+    border-radius: 16px !important;
+    padding: 16px 20px !important;
+    color: var(--text-color) !important;
+    box-shadow: var(--shadow) !important;
+    cursor: pointer;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.3s ease, background 0.3s ease, box-shadow 0.3s ease !important;
+}
+
+.accordion-header:hover {
+    transform: translateY(-3px) scale(1.01);
+    border-color: var(--lidl-yellow) !important;
+    background: radial-gradient(circle at center, rgba(0, 80, 170, 0.05) 0%, var(--card-bg) 100%) !important;
+    box-shadow: 0 10px 20px -8px rgba(0, 80, 170, 0.2), 0 0 12px 2px rgba(255, 215, 0, 0.15) !important;
+}
+
+html.dark .accordion-header:hover {
+    background: radial-gradient(circle at center, rgba(79, 150, 255, 0.1) 0%, var(--card-bg) 100%) !important;
+    box-shadow: 0 10px 20px -8px rgba(79, 150, 255, 0.3), 0 0 12px 2px rgba(255, 215, 0, 0.25) !important;
+}
+
+.accordion-header span:last-child {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--lidl-blue);
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.accordion-header:hover span:last-child {
+    color: var(--lidl-yellow);
+    transform: scale(1.15);
+}
+
+.accordion-content {
+    background: rgba(255, 255, 255, 0.015) !important;
+    border: 1px solid var(--card-border) !important;
+    border-top: none !important;
+    border-radius: 0 0 16px 16px !important;
+    padding: 20px !important;
+    margin-top: -4px !important;
+    box-shadow: inset 0 4px 12px rgba(0, 0, 0, 0.05) !important;
+}
+
+html.dark .accordion-content {
+    background: rgba(0, 0, 0, 0.2) !important;
+    box-shadow: inset 0 4px 12px rgba(0, 0, 0, 0.3) !important;
 }
 
 .modal-backdrop {
@@ -523,6 +689,59 @@ html.dark .nav-card:hover, html.dark .quick-action-btn:hover {
 .dark #speak-modal-btn:hover {
     background-color: rgba(255, 255, 255, 0.05);
 }
+
+/* Premium dark contacts cards with grid overlay and glowing gradients */
+.contact-card-premium {
+    position: relative;
+    background-color: #030712 !important;
+    background-image: 
+        radial-gradient(at 0% 0%, rgba(59, 130, 246, 0.18) 0px, transparent 50%), 
+        radial-gradient(at 100% 0%, rgba(139, 92, 246, 0.15) 0px, transparent 50%),
+        repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.008) 0px, rgba(255, 255, 255, 0.008) 1px, transparent 1px, transparent 40px),
+        repeating-linear-gradient(-45deg, rgba(255, 255, 255, 0.008) 0px, rgba(255, 255, 255, 0.008) 1px, transparent 1px, transparent 40px),
+        linear-gradient(rgba(255, 255, 255, 0.01) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.01) 1px, transparent 1px) !important;
+    background-size: 100% 100%, 100% 100%, 100% 100%, 100% 100%, 20px 20px, 20px 20px !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    border-top: 4px solid var(--card-border-color, var(--lidl-blue)) !important;
+    color: #f3f4f6 !important;
+    padding: 24px;
+    border-radius: 24px;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.4), 0 10px 10px -5px rgba(0, 0, 0, 0.3) !important;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 220px;
+    transition: transform 0.2s, border-color 0.2s;
+    text-align: left !important;
+}
+.contact-card-premium:hover {
+    transform: translateY(-4px);
+    border-color: var(--card-hover-border-color, var(--lidl-yellow)) !important;
+}
+.contact-row-premium {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background: rgba(255, 255, 255, 0.03) !important;
+    border: 1px solid rgba(255, 255, 255, 0.05) !important;
+    padding: 12px 16px;
+    border-radius: 14px;
+    transition: background 0.2s, border-color 0.2s;
+    gap: 8px;
+}
+@media (min-width: 640px) {
+    .contact-row-premium {
+        flex-direction: row;
+        align-items: center;
+        gap: 16px;
+    }
+}
+.contact-row-premium:hover {
+    background: rgba(255, 255, 255, 0.06) !important;
+    border-color: rgba(255, 255, 255, 0.1) !important;
+}
 </style>
     
     <!-- Globálny sledovač chýb pre zachytenie chýb syntaxe -->
@@ -595,9 +814,8 @@ html.dark .nav-card:hover, html.dark .quick-action-btn:hover {
     </header>
 
     <div class="container">
-        <div class="text-center my-10 md:my-14">
-            <h1 class="text-4xl md:text-5xl font-black text-[#0050AA] dark:text-[#bfdbfe] tracking-tight mb-3" data-translate-key="main_title">Príručka pre Vodičov</h1>
-            <p class="text-base md:text-lg font-semibold text-gray-500 dark:text-gray-400 max-w-xl mx-auto mb-4" data-translate-key="main_subtitle">Váš interaktívny sprievodca pre služobné vozidlá Lidl</p>
+        <div class="text-center my-3 md:my-4">
+            <h1 class="text-3xl md:text-4xl font-black text-[#0050AA] dark:text-[#bfdbfe] tracking-tight mb-2" data-translate-key="main_title">Príručka pre Vodičov</h1>
             <button id="pwa-install-btn" class="hidden mx-auto bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-5 rounded-full shadow-lg transition-all transform hover:scale-105 flex items-center gap-2 text-sm focus:outline-none">
                 <span>📲</span> <span data-translate-key="pwa_install_btn">Nainštalovať aplikáciu</span>
             </button>
@@ -621,8 +839,7 @@ html.dark .nav-card:hover, html.dark .quick-action-btn:hover {
         </div>
 
         <!-- Rýchle akcie -->
-        <h2 data-translate-key="quick_actions_title">Rýchle Akcie a Núdzové Situácie</h2>
-        <div class="grid grid-cols-2 gap-3 md:gap-4 mb-4">
+        <div class="grid grid-cols-2 gap-3 md:gap-4 mb-6">
             <div data-content-id="content-emergency" class="quick-action-btn red">
                 <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
                 <h3 data-translate-key="emergency_title">NÚDZA NA CESTE</h3>
@@ -635,7 +852,6 @@ html.dark .nav-card:hover, html.dark .quick-action-btn:hover {
             </div>
         </div>
 
-        <h2 data-translate-key="categories_title">Informačné Kategórie</h2>
         <div class="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
             <div data-content-id="content-prevadzka" class="nav-card">
                 <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="9" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></circle><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 12m-3 0a3 3 0 106 0 3 3 0 10-6 0M12 3v6M12 15v6M3 12h6M15 12h9"></path></svg>
@@ -673,7 +889,6 @@ html.dark .nav-card:hover, html.dark .quick-action-btn:hover {
                 <h2 id="modal-title" style="margin-bottom: 0;"></h2>
             </div>
             <div style="display: flex; align-items: center; gap: 8px;">
-                <button id="speak-modal-btn" class="close-btn" style="display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; font-size: 1.25rem;" title="Prečítať nahlas / Read aloud">🔊</button>
                 <button class="close-btn" id="close-modal-btn">×</button>
             </div>
         </div>
@@ -1762,67 +1977,201 @@ html.dark .nav-card:hover, html.dark .quick-action-btn:hover {
 
         <div id="content-kontakty">
             <h2 class="text-2xl font-bold lidl-blue-text mb-4" data-translate-key="contacts_h2">Dôležité kontakty</h2>
-             <div class="bg-red-50 border-l-4 border-red-500 p-4 rounded-r-lg mb-6">
-                <h3 class="text-lg font-bold text-red-800 mb-2" data-translate-key="contacts_warning_h">Dôležité upozornenie</h3>
-                <p class="text-red-700" data-translate-key="contacts_warning_p">Dodržujte postup nahlasovania a primárne využívajte nonstop kontakt spoločnosti Ayvens. Kontakty na poisťovňu využívajte len v krajných prípadoch, ak sa neviete dovolať na Ayvens linku.</p>
+            
+            <div class="bg-red-50 dark:bg-red-950/20 border-l-4 border-red-500 p-4 rounded-r-lg mb-6">
+                <h3 class="text-lg font-bold text-red-800 dark:text-red-300 mb-2" data-translate-key="contacts_warning_h">Dôležité upozornenie</h3>
+                <p class="text-red-700 dark:text-red-400" data-translate-key="contacts_warning_p">Dodržujte postup nahlasovania a primárne využívajte nonstop kontakt spoločnosti Ayvens. Kontakty na poisťovňu využívajte len v krajných prípadoch, ak sa neviete dovolať na Ayvens linku.</p>
             </div>
-            <div class="space-y-6">
-                <!-- Asistencia a Servis -->
-                <div>
-                    <h3 class="text-xl font-semibold mb-3 lidl-blue-text" data-translate-key="contacts_assist_h">Asistencia a Servis</h3>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div class="bg-gray-100 p-4 rounded-lg shadow-inner">
-                            <h4 class="font-bold" data-translate-key="contacts_assist_3_h">Odťah Kooperativa (mimo prac. doby) - SK</h4>
-                            <p class="text-2xl font-bold text-gray-700 my-2">18 118</p>
-                             <a href="tel:18118" class="w-full text-center bg-gray-600 text-white font-bold py-2 px-3 rounded-lg hover:bg-gray-700 transition-colors inline-block" data-translate-key="call">Volať</a>
+
+
+            <!-- Interaktívny Hub Rýchlych Kontaktov -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                <!-- 1. AYVENS NONSTOP CARD -->
+                <div class="contact-card-premium" style="--card-border-color: #3b82f6; --card-hover-border-color: #60a5fa;">
+                    <div class="absolute right-[-10px] top-[-10px] opacity-10">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-32 w-32" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg>
+                    </div>
+                    <div>
+                        <span class="bg-blue-400/25 text-[10px] text-blue-300 uppercase font-bold tracking-wider px-2.5 py-1 rounded-full border border-blue-400/20">🔥 Najdôležitejšie číslo</span>
+                        <h3 class="text-xl font-bold mt-3 mb-1 text-white">Ayvens / LeasePlan Nonstop</h3>
+                        <p class="text-xs text-slate-400 mb-5">Technická porucha, defekt, odťah, pravidelný servis, výmena čelného skla, náhradné vozidlo.</p>
+                    </div>
+                    <div class="space-y-3 z-10">
+                        <div class="contact-row-premium">
+                            <div class="flex items-center gap-3">
+                                <span class="text-lg">🇸🇰</span>
+                                <div>
+                                    <p class="text-[10px] font-semibold text-slate-400 leading-none">Slovensko (08:00 - 17:00)</p>
+                                    <p class="text-sm font-bold text-white mt-1 leading-none">0850 888 777</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-2">
+                                <a href="tel:0850888777" class="bg-blue-600 text-white font-bold px-3 py-1.5 rounded-lg text-xs hover:bg-blue-700 transition-colors flex items-center gap-1">📞 Volať</a>
+                                <button onclick="copyToClipboard('0850888777', this)" class="copy-btn bg-white/10 text-white p-1.5 rounded-lg hover:bg-white/20 text-xs">📋</button>
+                            </div>
                         </div>
-                        <div class="bg-gray-100 p-4 rounded-lg shadow-inner">
-                            <h4 class="font-bold" data-translate-key="contacts_assist_4_h">Odťah Kooperativa - Zahraničie</h4>
-                            <p class="text-2xl font-bold text-gray-700 my-2">+421 2 6353 2236</p>
-                             <a href="tel:+421263532236" class="w-full text-center bg-gray-600 text-white font-bold py-2 px-3 rounded-lg hover:bg-gray-700 transition-colors inline-block" data-translate-key="call">Volať</a>
+                        <div class="contact-row-premium">
+                            <div class="flex items-center gap-3">
+                                <span class="text-lg">🌍</span>
+                                <div>
+                                    <p class="text-[10px] font-semibold text-slate-400 leading-none">Zahraničie / Nonstop poruchy</p>
+                                    <p class="text-sm font-bold text-white mt-1 leading-none">+421 904 333 230</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-2">
+                                <a href="tel:+421904333230" class="bg-blue-600 text-white font-bold px-3 py-1.5 rounded-lg text-xs hover:bg-blue-700 transition-colors flex items-center gap-1">📞 Volať</a>
+                                <button onclick="copyToClipboard('+421904333230', this)" class="copy-btn bg-white/10 text-white p-1.5 rounded-lg hover:bg-white/20 text-xs">📋</button>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Hlásenie udalostí -->
-                <div class="border-t pt-6">
-                    <h3 class="text-xl font-semibold mb-3 lidl-blue-text" data-translate-key="contacts_report_h">Hlásenie poistných udalostí a administratíva</h3>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div class="bg-white p-4 rounded-lg shadow-md">
-                            <h4 class="font-bold" data-translate-key="contacts_report_1_h">Poistné udalosti (MARSH)</h4>
-                            <p class="text-2xl font-bold text-blue-600 my-2">+421 902 966 689</p>
-                             <a href="tel:+421902966689" class="w-full text-center bg-blue-600 text-white font-bold py-2 px-3 rounded-lg hover:bg-blue-700 transition-colors inline-block" data-translate-key="call">Volať</a>
-                             <p class="mt-2 text-sm">Email: <a href="mailto:autoskody@marsh.com" class="underline">autoskody@marsh.com</a></p>
-                        </div>
-                         <div class="bg-white p-4 rounded-lg shadow-md">
-                            <h4 class="font-bold" data-translate-key="contacts_report_2_h">Oddelenie Mobility (vždy v kópii)</h4>
-                            <p class="text-lg font-semibold text-blue-600 my-2 break-all">mobilita@lidl.sk</p>
-                            <a href="mailto:mobilita@lidl.sk" class="w-full text-center bg-blue-600 text-white font-bold py-2 px-3 rounded-lg hover:bg-blue-700 transition-colors inline-block" data-translate-key="send_email">Poslať email</a>
-                        </div>
+                <!-- 2. MARSH BROKER CARD -->
+                <div class="contact-card-premium" style="--card-border-color: #8b5cf6; --card-hover-border-color: #a78bfa;">
+                    <div class="absolute right-[-10px] top-[-10px] opacity-10">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-32 w-32" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>
                     </div>
-                </div>
-                
-                <!-- Strata kľúča -->
-                <div class="border-t pt-6">
-                    <h3 class="text-xl font-semibold mb-3 lidl-blue-text" data-translate-key="contacts_lostkey_h">Strata kľúča</h3>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div class="bg-yellow-50 p-4 rounded-lg shadow-md">
-                            <h4 class="font-bold" data-translate-key="contacts_lostkey_1_h">V pracovnej dobe (08:00 - 17:00)</h4>
-                            <p class="my-2" data-translate-key="contacts_lostkey_1_p">Kontaktujte <strong>Oddelenie Mobility</strong>.</p>
-                            <a href="mailto:mobilita@lidl.sk" class="w-full text-center bg-blue-600 text-white font-bold py-2 px-3 rounded-lg hover:bg-blue-700 transition-colors inline-block" data-translate-key="send_email">Poslať email</a>
+                    <div>
+                        <span class="bg-purple-400/25 text-[10px] text-purple-300 uppercase font-bold tracking-wider px-2.5 py-1 rounded-full border border-purple-400/20">🛡️ Havarijné poistenie (KASKO)</span>
+                        <h3 class="text-xl font-bold mt-3 mb-1 text-white">MARSH Poistný Broker</h3>
+                        <p class="text-xs text-slate-400 mb-5">Hlásenie všetkých poistných udalostí, nehôd, škôd na parkovisku alebo stretu so zverou.</p>
+                    </div>
+                    <div class="space-y-3 z-10">
+                        <div class="contact-row-premium">
+                            <div class="flex items-center gap-3">
+                                <span class="text-lg">📞</span>
+                                <div>
+                                    <p class="text-[10px] font-semibold text-slate-400 leading-none">Hlásenie škôd / Hotline</p>
+                                    <p class="text-sm font-bold text-white mt-1 leading-none">+421 902 966 689</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-2">
+                                <a href="tel:+421902966689" class="bg-purple-600 text-white font-bold px-3 py-1.5 rounded-lg text-xs hover:bg-purple-700 transition-colors flex items-center gap-1">📞 Volať</a>
+                                <button onclick="copyToClipboard('+421902966689', this)" class="copy-btn bg-white/10 text-white p-1.5 rounded-lg hover:bg-white/20 text-xs">📋</button>
+                            </div>
                         </div>
-                         <div class="bg-yellow-50 p-4 rounded-lg shadow-md">
-                            <h4 class="font-bold" data-translate-key="contacts_lostkey_2_h">Mimo pracovnej doby</h4>
-                            <p class="my-2" data-translate-key="contacts_lostkey_2_p">Kontaktujte <strong>LeasePlan nonstop linku</strong>.</p>
-                             <p class="text-2xl font-bold text-blue-600 my-2">+421 904 333 230</p>
-                            <a href="tel:+421904333230" class="w-full text-center bg-blue-600 text-white font-bold py-2 px-3 rounded-lg hover:bg-blue-700 transition-colors inline-block" data-translate-key="call">Volať</a>
+                        <div class="contact-row-premium">
+                            <div class="flex items-center gap-3">
+                                <span class="text-lg">✉️</span>
+                                <div>
+                                    <p class="text-[10px] font-semibold text-slate-400 leading-none">E-mail pre dokumenty</p>
+                                    <p class="text-sm font-bold text-white mt-1 leading-none">autoskody@marsh.com</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-2">
+                                <a href="mailto:autoskody@marsh.com" class="bg-purple-600/35 text-white font-bold px-3 py-1.5 rounded-lg text-xs hover:bg-purple-700/50 transition-colors flex items-center gap-1">✉️ E-mail</a>
+                                <button onclick="copyToClipboard('autoskody@marsh.com', this)" class="copy-btn bg-white/10 text-white p-1.5 rounded-lg hover:bg-white/20 text-xs">📋</button>
+                            </div>
                         </div>
                     </div>
                 </div>
 
+                <!-- 3. MOBILITY LIDL CARD -->
+                <div class="contact-card-premium" style="--card-border-color: #10b981; --card-hover-border-color: #34d399;">
+                    <div class="absolute right-[-10px] top-[-10px] opacity-10">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-32 w-32" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" /></svg>
+                    </div>
+                    <div>
+                        <span class="bg-emerald-400/25 text-[10px] text-emerald-300 uppercase font-bold tracking-wider px-2.5 py-1 rounded-full border border-emerald-400/20">🏢 Lidl Interná správa</span>
+                        <h3 class="text-xl font-bold mt-3 mb-1 text-white">Oddelenie Mobility Lidl</h3>
+                        <p class="text-xs text-slate-400 mb-5">Výmena a objednanie vozidiel, tankovacie karty, schvaľovanie nadlimitných opráv, autolekárničky.</p>
+                    </div>
+                    <div class="space-y-3 z-10">
+                        <div class="contact-row-premium">
+                            <div class="flex items-center gap-3">
+                                <span class="text-lg">✉️</span>
+                                <div>
+                                    <p class="text-[10px] font-semibold text-slate-400 leading-none">Vždy v kópii pri škodových udalostiach</p>
+                                    <p class="text-sm font-bold text-white mt-1 leading-none">mobilita@lidl.sk</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-2">
+                                <a href="mailto:mobilita@lidl.sk" class="bg-emerald-600 text-white font-bold px-3 py-1.5 rounded-lg text-xs hover:bg-emerald-700 transition-colors flex items-center gap-1">✉️ E-mail</a>
+                                <button onclick="copyToClipboard('mobilita@lidl.sk', this)" class="copy-btn bg-white/10 text-white p-1.5 rounded-lg hover:bg-white/20 text-xs">📋</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4. EMERGENCY & POLICE CARD -->
+                <div class="contact-card-premium" style="--card-border-color: #ef4444; --card-hover-border-color: #f87171;">
+                    <div class="absolute right-[-10px] top-[-10px] opacity-10">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-32 w-32" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
+                    </div>
+                    <div>
+                        <span class="bg-red-400/25 text-[10px] text-red-300 uppercase font-bold tracking-wider px-2.5 py-1 rounded-full border border-red-400/20">🚨 Záchranné zložky</span>
+                        <h3 class="text-xl font-bold mt-3 mb-1 text-white">Štátne Núdzové Linky</h3>
+                        <p class="text-xs text-slate-400 mb-5">Vážne zranenia, požiar, stret s lesnou zverou alebo nehoda s nutnou účasťou polície.</p>
+                    </div>
+                    <div class="space-y-3 z-10">
+                        <div class="contact-row-premium">
+                            <div class="flex items-center gap-3">
+                                <span class="text-lg">🚓</span>
+                                <div>
+                                    <p class="text-[10px] font-semibold text-slate-400 leading-none">Polícia Slovensko</p>
+                                    <p class="text-sm font-bold text-white mt-1 leading-none">158</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-2">
+                                <a href="tel:158" class="bg-red-600 text-white font-bold px-4 py-1.5 rounded-lg text-xs hover:bg-red-700 transition-colors flex items-center gap-1">📞 Volať</a>
+                            </div>
+                        </div>
+                        <div class="contact-row-premium">
+                            <div class="flex items-center gap-3">
+                                <span class="text-lg">🚑</span>
+                                <div>
+                                    <p class="text-[10px] font-semibold text-slate-400 leading-none">Jednotné núdzové volanie</p>
+                                    <p class="text-sm font-bold text-white mt-1 leading-none">112</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-2">
+                                <a href="tel:112" class="bg-red-600 text-white font-bold px-4 py-1.5 rounded-lg text-xs hover:bg-red-700 transition-colors flex items-center gap-1">📞 Volať</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 5. ODT̆AH KOOPERATIVA CARD (Backup) -->
+                <div class="contact-card-premium" style="--card-border-color: #64748b; --card-hover-border-color: #94a3b8;">
+                    <div class="absolute right-[-10px] top-[-10px] opacity-10">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-32 w-32" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
+                    </div>
+                    <div>
+                        <span class="bg-slate-500/25 text-[10px] text-slate-300 uppercase font-bold tracking-wider px-2.5 py-1 rounded-full border border-slate-500/20">🚛 Záložný odťah (Kooperativa)</span>
+                        <h3 class="text-xl font-bold mt-3 mb-1 text-white">Asistenčná služba Kooperativa</h3>
+                        <p class="text-xs text-slate-400 mb-5">Využite len v krajných prípadoch, ak sa nemôžete dovolať na hlavnú linku Ayvens.</p>
+                    </div>
+                    <div class="space-y-3 z-10">
+                        <div class="contact-row-premium">
+                            <div class="flex items-center gap-3">
+                                <span class="text-lg">🇸🇰</span>
+                                <div>
+                                    <p class="text-[10px] font-semibold text-slate-400 leading-none">Slovensko (skrátená linka)</p>
+                                    <p class="text-sm font-bold text-white mt-1 leading-none">18 118</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-2">
+                                <a href="tel:18118" class="bg-slate-600 text-white font-bold px-4 py-1.5 rounded-lg text-xs hover:bg-slate-700 transition-colors flex items-center gap-1">📞 Volať</a>
+                                <button onclick="copyToClipboard('18118', this)" class="copy-btn bg-white/10 text-white p-1.5 rounded-lg hover:bg-white/20 text-xs">📋</button>
+                            </div>
+                        </div>
+                        <div class="contact-row-premium">
+                            <div class="flex items-center gap-3">
+                                <span class="text-lg">🌍</span>
+                                <div>
+                                    <p class="text-[10px] font-semibold text-slate-400 leading-none">Volanie zo zahraničia</p>
+                                    <p class="text-sm font-bold text-white mt-1 leading-none">+421 2 6353 2236</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-2">
+                                <a href="tel:+421263532236" class="bg-slate-600 text-white font-bold px-4 py-1.5 rounded-lg text-xs hover:bg-slate-700 transition-colors flex items-center gap-1">📞 Volať</a>
+                                <button onclick="copyToClipboard('+421263532236', this)" class="copy-btn bg-white/10 text-white p-1.5 rounded-lg hover:bg-white/20 text-xs">📋</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-
     </div>
     
     <script>
@@ -1838,6 +2187,148 @@ html.dark .nav-card:hover, html.dark .quick-action-btn:hover {
                 btnElement.style.background = originalBg;
             }, 1200);
         });
+    };
+
+    window.formatPhoneNumbersForSpeech = (text) => {
+        return text.replace(/(\+?\d[\d\s]{2,}\d)/g, (match) => {
+            const digitsOnly = match.replace(/\s+/g, '');
+            if (digitsOnly.length < 3) return match;
+            
+            if (digitsOnly.length === 3 || digitsOnly.length === 5) {
+                return digitsOnly.split('').join(' ');
+            }
+            
+            if (digitsOnly.startsWith('0850') && digitsOnly.length === 10) {
+                return '0 8 5 0, ' + digitsOnly.slice(4, 7).split('').join(' ') + ', ' + digitsOnly.slice(7).split('').join(' ');
+            }
+            
+            if (digitsOnly.startsWith('+421') && digitsOnly.length === 13) {
+                return 'plus 4 2 1, ' + digitsOnly.slice(4, 7).split('').join(' ') + ', ' + digitsOnly.slice(7, 10).split('').join(' ') + ', ' + digitsOnly.slice(10).split('').join(' ');
+            }
+            
+            return digitsOnly.split('').map((d, idx) => {
+                if (idx > 0 && idx % 3 === 0) return ', ' + d;
+                return d;
+            }).join(' ');
+        });
+    };
+
+    window.stopAllSpeech = () => {
+        const synth = window.speechSynthesis;
+        if (synth) {
+            synth.cancel();
+        }
+        document.querySelectorAll('.section-speak-btn').forEach(btn => {
+            const icon = btn.querySelector('.speak-icon');
+            const text = btn.querySelector('.speak-text');
+            const isEn = document.getElementById('lang-en') && document.getElementById('lang-en').classList.contains('active');
+            if (icon) icon.textContent = '🔊';
+            if (text) text.textContent = isEn ? 'Read Section Aloud' : 'Prečítať celú sekciu';
+        });
+        window.activeSectionSpeakBtn = null;
+    };
+
+    window.speakText = (text, btnElement) => {
+        const synth = window.speechSynthesis;
+        if (!synth) return;
+        
+        if (synth.speaking) {
+            window.stopAllSpeech();
+            return;
+        }
+        
+        const textToSpeak = window.formatPhoneNumbersForSpeech(text);
+        const utterance = new SpeechSynthesisUtterance(textToSpeak);
+        const hasSlovakChars = /[áäčďéíĺľňóôŕšťúýž]/i.test(text);
+        utterance.lang = hasSlovakChars ? 'sk-SK' : 'en-US';
+        
+        utterance.onend = () => {
+            btnElement.innerHTML = '🔊';
+            window.activeSpeakBtn = null;
+        };
+        
+        utterance.onerror = () => {
+            btnElement.innerHTML = '🔊';
+            window.activeSpeakBtn = null;
+        };
+        
+        btnElement.innerHTML = '⏹️';
+        window.activeSpeakBtn = btnElement;
+        synth.speak(utterance);
+    };
+
+    window.initModalTextSpeech = (container) => {
+        const currentLang = (document.getElementById('lang-en') && document.getElementById('lang-en').classList.contains('active')) ? 'en' : 'sk';
+        
+        // Vyčistiť staré tlačidlá
+        container.querySelectorAll('.inline-speak-btn, .section-speak-bar').forEach(el => el.remove());
+        
+        // Zistiť, či sme v modálnom okne a či nejde o nepodporovanú sekciu (kontakty, núdza, nehoda, porucha)
+        const parentModal = container.closest('#modal-content');
+        if (!parentModal) return;
+        
+        const modalBodyId = container.id || (container.firstElementChild ? container.firstElementChild.id : '');
+        if (modalBodyId === 'content-emergency' || modalBodyId === 'content-nehoda' || modalBodyId === 'content-porucha' || modalBodyId === 'content-kontakty') {
+            return;
+        }
+        
+        // Vytvoriť lištu s jedným tlačidlom na prečítanie celej sekcie
+        const speakBar = document.createElement('div');
+        speakBar.className = 'section-speak-bar flex justify-end mb-4 border-b border-gray-200 dark:border-slate-700 pb-2';
+        speakBar.innerHTML = `
+            <button class="section-speak-btn bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 font-semibold py-1.5 px-3 rounded-full text-xs transition-colors flex items-center gap-1.5 focus:outline-none border border-slate-200 dark:border-slate-700">
+                <span class="speak-icon">🔊</span> <span class="speak-text">${currentLang === 'en' ? 'Read Section Aloud' : 'Prečítať celú sekciu'}</span>
+            </button>
+        `;
+        
+        const btn = speakBar.querySelector('.section-speak-btn');
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            const synth = window.speechSynthesis;
+            if (!synth) return;
+            
+            if (synth.speaking) {
+                const wasActive = (window.activeSectionSpeakBtn === btn);
+                window.stopAllSpeech();
+                if (wasActive) return; // Ak sme klikli na aktívne tlačidlo, len zastavíme a skončíme
+            }
+            
+            const tempDiv = container.cloneNode(true);
+            
+            // Odstrániť dekoratívne tagy, obrázky, ikony, tlačidlá
+            tempDiv.querySelectorAll('.section-speak-bar, button, a.btn, .close-btn, .tabs-container, img, svg, picture, figure, hr').forEach(el => el.remove());
+            
+            let text = tempDiv.textContent.trim();
+            text = text.replace(/🔊|📋|📞|✉️|🚓|🚑|🚛/g, '').replace(/\s+/g, ' ').trim();
+            
+            if (!text) return;
+            
+            const textToSpeak = window.formatPhoneNumbersForSpeech(text);
+            const utterance = new SpeechSynthesisUtterance(textToSpeak);
+            const hasSlovakChars = /[áäčďéíĺľňóôŕšťúýž]/i.test(text);
+            utterance.lang = hasSlovakChars ? 'sk-SK' : 'en-US';
+            
+            utterance.onend = () => {
+                btn.querySelector('.speak-icon').textContent = '🔊';
+                btn.querySelector('.speak-text').textContent = currentLang === 'en' ? 'Read Section Aloud' : 'Prečítať celú sekciu';
+                window.activeSectionSpeakBtn = null;
+            };
+            
+            utterance.onerror = () => {
+                btn.querySelector('.speak-icon').textContent = '🔊';
+                btn.querySelector('.speak-text').textContent = currentLang === 'en' ? 'Read Section Aloud' : 'Prečítať celú sekciu';
+                window.activeSectionSpeakBtn = null;
+            };
+            
+            btn.querySelector('.speak-icon').textContent = '⏹️';
+            btn.querySelector('.speak-text').textContent = currentLang === 'en' ? 'Stop Reading' : 'Zastaviť čítanie';
+            window.activeSectionSpeakBtn = btn;
+            synth.speak(utterance);
+        });
+        
+        container.insertBefore(speakBar, container.firstChild);
     };
 
     window.shareGreenCards = async (btnElement, url) => {
@@ -2640,12 +3131,12 @@ html.dark .nav-card:hover, html.dark .quick-action-btn:hover {
             emergencyDiv.innerHTML = `
                 <p class="text-center text-lg mb-6 font-semibold" data-translate-key="emergency_subtitle" style="opacity: 0.85;">Nehoda, porucha, odťah alebo defekt.</p>
                 <div class="grid grid-cols-2 gap-4">
-                    <div data-internal-link="content-nehoda" class="nav-card red hover-glow" style="border-color: #ef4444; background: rgba(239, 68, 68, 0.05); padding: 30px 20px; border-radius: 16px; text-align: center; cursor: pointer; transition: all 0.3s; display: flex; flex-direction: column; align-items: center;">
-                        <span style="font-size: 3rem; margin-bottom: 8px;">💥</span>
+                    <div data-internal-link="content-nehoda" class="nav-card red-tile">
+                        <span class="tile-emoji">💥</span>
                         <h3 class="font-bold text-lg" data-translate-key="accident_title">Mám nehodu</h3>
                     </div>
-                    <div data-internal-link="content-porucha" class="nav-card hover-glow" style="border-color: var(--lidl-yellow); background: rgba(255, 215, 0, 0.05); padding: 30px 20px; border-radius: 16px; text-align: center; cursor: pointer; transition: all 0.3s; display: flex; flex-direction: column; align-items: center;">
-                        <span style="font-size: 3rem; margin-bottom: 8px;">🔧</span>
+                    <div data-internal-link="content-porucha" class="nav-card yellow-tile">
+                        <span class="tile-emoji">🔧</span>
                         <h3 class="font-bold text-lg" data-translate-key="breakdown_title">Pokazilo sa mi auto</h3>
                     </div>
                 </div>
@@ -3024,7 +3515,8 @@ html.dark .nav-card:hover, html.dark .quick-action-btn:hover {
             // --- Kopírovanie kontaktov ---
             const contactLinks = container.querySelectorAll('a[href^="tel:"], a[href^="mailto:"]');
             contactLinks.forEach(link => {
-                if (!link.nextSibling || !link.nextSibling.classList || !link.nextSibling.classList.contains('copy-btn')) {
+                const nextEl = link.nextElementSibling;
+                if (!nextEl || !nextEl.classList || !nextEl.classList.contains('copy-btn')) {
                     const copyBtn = document.createElement('button');
                     copyBtn.className = 'copy-btn ml-2 p-1 text-gray-400 hover:text-blue-500 transition-colors text-xs border border-gray-200 rounded bg-white dark:bg-slate-700 dark:border-slate-600 focus:outline-none inline-block';
                     copyBtn.innerHTML = '📋';
@@ -3044,6 +3536,7 @@ html.dark .nav-card:hover, html.dark .quick-action-btn:hover {
             });
             initWarningLightsInteractivity(container);
             initSpeedFineCalculator(container);
+            initModalTextSpeech(container);
         };
 
         const backModalBtn = document.getElementById('back-modal-btn');
@@ -3102,10 +3595,8 @@ html.dark .nav-card:hover, html.dark .quick-action-btn:hover {
             if (activeCard && activeCard.classList) { activeCard.classList.remove('active-card'); }
             activeCard = null;
 
-            if (synth && isSpeaking) {
-                synth.cancel();
-                isSpeaking = false;
-                if (speakModalBtn) speakModalBtn.textContent = '🔊';
+            if (window.stopAllSpeech) {
+                window.stopAllSpeech();
             }
 
             // Go back in history if we closed via button and a modal state is active
@@ -3118,10 +3609,8 @@ html.dark .nav-card:hover, html.dark .quick-action-btn:hover {
         window.addEventListener('popstate', function(event) {
             if (isModalPushingState) return;
             
-            if (synth && isSpeaking) {
-                synth.cancel();
-                isSpeaking = false;
-                if (speakModalBtn) speakModalBtn.textContent = '🔊';
+            if (window.stopAllSpeech) {
+                window.stopAllSpeech();
             }
 
             if (event.state && event.state.modalOpen) {
