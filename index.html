@@ -51,15 +51,12 @@
 }
 
 html.dark body {
-    background-color: #121824 !important;
+    background-color: #0b0d10 !important;
     background-image: 
-        linear-gradient(65deg, transparent 45%, rgba(255, 255, 255, 0.08) 45%, rgba(255, 255, 255, 0.08) 45.2%, transparent 45.2%),
-        linear-gradient(145deg, transparent 65%, rgba(255, 255, 255, 0.06) 65%, rgba(255, 255, 255, 0.06) 65.2%, transparent 65.2%),
-        linear-gradient(145deg, transparent 35%, rgba(255, 255, 255, 0.04) 35%, rgba(255, 255, 255, 0.04) 35.2%, transparent 35.2%),
-        linear-gradient(65deg, transparent 42%, rgba(0, 0, 0, 0.25) 45%, transparent 48%),
-        linear-gradient(125deg, transparent 52%, rgba(0, 0, 0, 0.35) 55%, transparent 58%),
-        linear-gradient(125deg, #121824 0%, #121824 55%, #182030 55%, #182030 100%) !important;
-    background-size: 100% 100% !important;
+        radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.04) 0%, transparent 70%),
+        linear-gradient(45deg, rgba(255, 255, 255, 0.003) 25%, transparent 25%, transparent 75%, rgba(255, 255, 255, 0.003) 75%, rgba(255, 255, 255, 0.003)),
+        linear-gradient(-45deg, rgba(255, 255, 255, 0.003) 25%, transparent 25%, transparent 75%, rgba(255, 255, 255, 0.003) 75%, rgba(255, 255, 255, 0.003)) !important;
+    background-size: 100% 100%, 40px 40px, 40px 40px !important;
 }
 
 @keyframes mic-pulse {
@@ -405,55 +402,165 @@ html.dark .nav-card:hover svg {
 }
 
 /* Quick Actions specific */
-.quick-action-btn {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: space-between;
-    padding: 24px;
-    border-radius: 16px;
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+/* Premium unified quick cards styling (Replica of high-end dashboard mockup) */
+.quick-card {
+    background: rgba(22, 24, 28, 0.75) !important;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    border-radius: 24px !important;
+    padding: 24px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    justify-content: flex-end !important;
+    min-height: 160px !important;
     cursor: pointer;
-    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease, background 0.3s ease;
-    min-height: 180px;
+    text-align: left !important;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.3s ease, box-shadow 0.3s ease, background 0.3s ease !important;
+    position: relative;
+    overflow: hidden;
 }
-.quick-action-btn:hover {
+
+html:not(.dark) .quick-card {
+    background: rgba(255, 255, 255, 0.9) !important;
+    border: 1px solid rgba(0, 0, 0, 0.08) !important;
+}
+
+/* Base colored borders and shadows for dark mode */
+html.dark .quick-card.color-red { border-color: rgba(239, 68, 68, 0.25) !important; box-shadow: 0 4px 20px rgba(239, 68, 68, 0.06); }
+html.dark .quick-card.color-blue { border-color: rgba(59, 130, 246, 0.25) !important; box-shadow: 0 4px 20px rgba(59, 130, 246, 0.06); }
+html.dark .quick-card.color-green { border-color: rgba(16, 185, 129, 0.25) !important; box-shadow: 0 4px 20px rgba(16, 185, 129, 0.06); }
+html.dark .quick-card.color-purple { border-color: rgba(168, 85, 247, 0.25) !important; box-shadow: 0 4px 20px rgba(168, 85, 247, 0.06); }
+html.dark .quick-card.color-violet { border-color: rgba(139, 92, 246, 0.25) !important; box-shadow: 0 4px 20px rgba(139, 92, 246, 0.06); }
+html.dark .quick-card.color-cyan { border-color: rgba(6, 182, 212, 0.25) !important; box-shadow: 0 4px 20px rgba(6, 182, 212, 0.06); }
+
+/* Base colored borders and shadows for light mode */
+html:not(.dark) .quick-card.color-red { border-color: rgba(239, 68, 68, 0.15) !important; }
+html:not(.dark) .quick-card.color-blue { border-color: rgba(59, 130, 246, 0.15) !important; }
+html:not(.dark) .quick-card.color-green { border-color: rgba(16, 185, 129, 0.15) !important; }
+html:not(.dark) .quick-card.color-purple { border-color: rgba(168, 85, 247, 0.15) !important; }
+html:not(.dark) .quick-card.color-violet { border-color: rgba(139, 92, 246, 0.15) !important; }
+html:not(.dark) .quick-card.color-cyan { border-color: rgba(6, 182, 212, 0.15) !important; }
+
+/* Hover states with radial glowing gradient background */
+.quick-card:hover {
     transform: translateY(-6px) scale(1.02);
 }
-.quick-action-btn.red { background: linear-gradient(135deg, #ef4444, #b91c1c); color: white; border: none; }
-.quick-action-btn.red:hover {
-    background: radial-gradient(circle at center, #f87171 0%, #b91c1c 100%) !important;
-    box-shadow: 0 20px 35px -10px rgba(239, 68, 68, 0.6), 0 0 20px 4px rgba(239, 68, 68, 0.3), inset 0 0 15px rgba(255, 255, 255, 0.25) !important;
+
+html.dark .quick-card.color-red:hover {
+    border-color: #ef4444 !important;
+    background: radial-gradient(circle at top left, rgba(239, 68, 68, 0.12) 0%, rgba(22, 24, 28, 0.95) 100%) !important;
+    box-shadow: 0 15px 35px -5px rgba(239, 68, 68, 0.45), 0 0 20px 4px rgba(239, 68, 68, 0.2) !important;
 }
-.quick-action-btn.blue { background: linear-gradient(135deg, #3b82f6, #1d4ed8); color: white; border: none; }
-.quick-action-btn.blue:hover {
-    background: radial-gradient(circle at center, #60a5fa 0%, #1d4ed8 100%) !important;
-    box-shadow: 0 20px 35px -10px rgba(59, 130, 246, 0.6), 0 0 20px 4px rgba(59, 130, 246, 0.3), inset 0 0 15px rgba(255, 255, 255, 0.25) !important;
+
+html.dark .quick-card.color-blue:hover {
+    border-color: #3b82f6 !important;
+    background: radial-gradient(circle at top left, rgba(59, 130, 246, 0.12) 0%, rgba(22, 24, 28, 0.95) 100%) !important;
+    box-shadow: 0 15px 35px -5px rgba(59, 130, 246, 0.45), 0 0 20px 4px rgba(59, 130, 246, 0.2) !important;
 }
-.quick-action-btn.lidl { background: var(--lidl-blue); color: white; border: none; }
-.quick-action-btn svg { 
-    width: 48px; 
-    height: 48px; 
-    color: white; 
-    margin-bottom: 16px; 
-    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), filter 0.3s ease;
+
+html.dark .quick-card.color-green:hover {
+    border-color: #10b981 !important;
+    background: radial-gradient(circle at top left, rgba(16, 185, 129, 0.12) 0%, rgba(22, 24, 28, 0.95) 100%) !important;
+    box-shadow: 0 15px 35px -5px rgba(16, 185, 129, 0.45), 0 0 20px 4px rgba(16, 185, 129, 0.2) !important;
 }
-.quick-action-btn:hover svg {
-    transform: scale(1.12);
-    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.8)) brightness(1.2);
+
+html.dark .quick-card.color-purple:hover {
+    border-color: #a855f7 !important;
+    background: radial-gradient(circle at top left, rgba(168, 85, 247, 0.12) 0%, rgba(22, 24, 28, 0.95) 100%) !important;
+    box-shadow: 0 15px 35px -5px rgba(168, 85, 247, 0.45), 0 0 20px 4px rgba(168, 85, 247, 0.2) !important;
 }
-.quick-action-btn h3 {
-    font-size: 1.25rem;
-    font-weight: 700;
-    margin-bottom: 4px;
-    color: white;
+
+html.dark .quick-card.color-violet:hover {
+    border-color: #8b5cf6 !important;
+    background: radial-gradient(circle at top left, rgba(139, 92, 246, 0.12) 0%, rgba(22, 24, 28, 0.95) 100%) !important;
+    box-shadow: 0 15px 35px -5px rgba(139, 92, 246, 0.45), 0 0 20px 4px rgba(139, 92, 246, 0.2) !important;
 }
-.quick-action-btn p {
-    font-size: 0.875rem;
-    opacity: 0.9;
-    margin-bottom: 0;
-    color: white;
+
+html.dark .quick-card.color-cyan:hover {
+    border-color: #06b6d4 !important;
+    background: radial-gradient(circle at top left, rgba(6, 182, 212, 0.12) 0%, rgba(22, 24, 28, 0.95) 100%) !important;
+    box-shadow: 0 15px 35px -5px rgba(6, 182, 212, 0.45), 0 0 20px 4px rgba(6, 182, 212, 0.2) !important;
 }
+
+html:not(.dark) .quick-card.color-red:hover { border-color: #ef4444 !important; box-shadow: 0 15px 30px rgba(239, 68, 68, 0.15) !important; }
+html:not(.dark) .quick-card.color-blue:hover { border-color: #3b82f6 !important; box-shadow: 0 15px 30px rgba(59, 130, 246, 0.15) !important; }
+html:not(.dark) .quick-card.color-green:hover { border-color: #10b981 !important; box-shadow: 0 15px 30px rgba(16, 185, 129, 0.15) !important; }
+html:not(.dark) .quick-card.color-purple:hover { border-color: #a855f7 !important; box-shadow: 0 15px 30px rgba(168, 85, 247, 0.15) !important; }
+html:not(.dark) .quick-card.color-violet:hover { border-color: #8b5cf6 !important; box-shadow: 0 15px 30px rgba(139, 92, 246, 0.15) !important; }
+html:not(.dark) .quick-card.color-cyan:hover { border-color: #06b6d4 !important; box-shadow: 0 15px 30px rgba(6, 182, 212, 0.15) !important; }
+
+/* Icon wrappers (Small dark square box with rounded corners) */
+.card-icon-wrapper {
+    border-radius: 14px !important;
+    padding: 10px !important;
+    margin-bottom: 24px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    background: rgba(255, 255, 255, 0.02) !important;
+    width: 44px;
+    height: 44px;
+}
+
+html:not(.dark) .card-icon-wrapper {
+    background: rgba(0, 0, 0, 0.02) !important;
+    border: 1px solid rgba(0, 0, 0, 0.06) !important;
+}
+
+/* Section-specific card icon wrapper glow settings */
+.card-icon-wrapper.red-glow { background: rgba(239, 68, 68, 0.05) !important; border-color: rgba(239, 68, 68, 0.2) !important; }
+.card-icon-wrapper.blue-glow { background: rgba(59, 130, 246, 0.05) !important; border-color: rgba(59, 130, 246, 0.2) !important; }
+.card-icon-wrapper.green-glow { background: rgba(16, 185, 129, 0.05) !important; border-color: rgba(16, 185, 129, 0.2) !important; }
+.card-icon-wrapper.purple-glow { background: rgba(168, 85, 247, 0.05) !important; border-color: rgba(168, 85, 247, 0.2) !important; }
+.card-icon-wrapper.violet-glow { background: rgba(139, 92, 246, 0.05) !important; border-color: rgba(139, 92, 246, 0.2) !important; }
+.card-icon-wrapper.cyan-glow { background: rgba(6, 182, 212, 0.05) !important; border-color: rgba(6, 182, 212, 0.2) !important; }
+
+/* Hover effects for icons inside wrappers */
+.quick-card:hover .card-icon-wrapper svg {
+    transform: scale(1.1);
+}
+
+.quick-card.color-red:hover .card-icon-wrapper { border-color: rgba(239, 68, 68, 0.6) !important; background: rgba(239, 68, 68, 0.15) !important; box-shadow: 0 0 12px rgba(239, 68, 68, 0.4) !important; }
+.quick-card.color-blue:hover .card-icon-wrapper { border-color: rgba(59, 130, 246, 0.6) !important; background: rgba(59, 130, 246, 0.15) !important; box-shadow: 0 0 12px rgba(59, 130, 246, 0.4) !important; }
+.quick-card.color-green:hover .card-icon-wrapper { border-color: rgba(16, 185, 129, 0.6) !important; background: rgba(16, 185, 129, 0.15) !important; box-shadow: 0 0 12px rgba(16, 185, 129, 0.4) !important; }
+.quick-card.color-purple:hover .card-icon-wrapper { border-color: rgba(168, 85, 247, 0.6) !important; background: rgba(168, 85, 247, 0.15) !important; box-shadow: 0 0 12px rgba(168, 85, 247, 0.4) !important; }
+.quick-card.color-violet:hover .card-icon-wrapper { border-color: rgba(139, 92, 246, 0.6) !important; background: rgba(139, 92, 246, 0.15) !important; box-shadow: 0 0 12px rgba(139, 92, 246, 0.4) !important; }
+.quick-card.color-cyan:hover .card-icon-wrapper { border-color: rgba(6, 182, 212, 0.6) !important; background: rgba(6, 182, 212, 0.15) !important; box-shadow: 0 0 12px rgba(6, 182, 212, 0.4) !important; }
+
+/* SVG icons within cards */
+.quick-card svg {
+    width: 24px !important;
+    height: 24px !important;
+    transition: transform 0.3s ease !important;
+}
+
+.quick-card.color-red svg { color: #ef4444 !important; }
+.quick-card.color-blue svg { color: #3b82f6 !important; }
+.quick-card.color-green svg { color: #10b981 !important; }
+.quick-card.color-purple svg { color: #a855f7 !important; }
+.quick-card.color-violet svg { color: #8b5cf6 !important; }
+.quick-card.color-cyan svg { color: #06b6d4 !important; }
+
+/* Quick card titles */
+.quick-card h3 {
+    font-size: 1.1rem !important;
+    font-weight: 800 !important;
+    color: #ffffff !important;
+    margin-top: 10px !important;
+    margin-bottom: 0 !important;
+    letter-spacing: -0.01em !important;
+    text-align: left !important;
+    line-height: 1.25 !important;
+}
+
+html:not(.dark) .quick-card h3 {
+    color: #1e293b !important;
+}
+
 
 /* Custom sub-tiles in emergency/accident modals */
 .nav-card.red-tile, .nav-card.yellow-tile {
@@ -871,39 +978,53 @@ html.dark #content-servis .accordion-header:hover {
                 </svg>
             </button>
             
-            <!-- Výsledky z Rýchleho pomocníka zákona a prevádzky sa zobrazia priamo tu -->
-            <div id="main-law-search-results" class="mt-4 hidden space-y-3 max-h-60 overflow-y-auto pr-1"></div>
-        </div>
-
-        <!-- Rýchle akcie -->
-        <div class="grid grid-cols-2 gap-3 md:gap-4 mb-6">
-            <div data-content-id="content-emergency" class="quick-action-btn red">
-                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+            <!-- Výsledky z Rýchleho pomocníka zákona a prevádzky sa zobrazia priamo tu -->        <!-- Rýchle akcie (Unified Premium Grid) -->
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-4 mb-6">
+            <!-- 1. NÚDZA NA CESTE -->
+            <div data-content-id="content-emergency" class="quick-card quick-action-btn color-red">
+                <div class="card-icon-wrapper red-glow">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+                </div>
                 <h3 data-translate-key="emergency_title">NÚDZA NA CESTE</h3>
-                <p data-translate-key="emergency_subtitle">Nehoda, porucha, odťah alebo defekt.</p>
             </div>
-            <div data-content-id="content-servis" class="quick-action-btn blue">
-                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+            
+            <!-- 2. Potrebujem servis -->
+            <div data-content-id="content-servis" class="quick-card quick-action-btn color-blue">
+                <div class="card-icon-wrapper blue-glow">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                </div>
                 <h3 data-translate-key="service_title">Potrebujem servis</h3>
-                <p data-translate-key="service_subtitle_quick">Objednajte si opravu alebo údržbu.</p>
             </div>
-        </div>
-
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
-            <div data-content-id="content-prevadzka" class="nav-card">
-                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="9" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></circle><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 12m-3 0a3 3 0 106 0 3 3 0 10-6 0M12 3v6M12 15v6M3 12h6M15 12h9"></path></svg>
+            
+            <!-- 3. Každodenná prevádzka -->
+            <div data-content-id="content-prevadzka" class="quick-card nav-card color-green">
+                <div class="card-icon-wrapper green-glow">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="9" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></circle><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 12m-3 0a3 3 0 106 0 3 3 0 10-6 0M12 3v6M12 15v6M3 12h6M15 12h9"></path></svg>
+                </div>
                 <h3 data-translate-key="nav_prevadzka">Každodenná prevádzka</h3>
             </div>
-            <div data-content-id="content-care" class="nav-card">
-                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
-                <h3 data-translate-key="nav_care">Starostlivosť & Servis</h3>
-            </div>
-            <div data-content-id="content-rules" class="nav-card">
-                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+            
+            <!-- 4. Pravidlá & Pokuty -->
+            <div data-content-id="content-rules" class="quick-card nav-card color-purple">
+                <div class="card-icon-wrapper purple-glow">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+                </div>
                 <h3 data-translate-key="nav_rules_fines">Pravidlá & Pokuty</h3>
             </div>
-            <div data-content-id="content-kontakty" class="nav-card">
-                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+            
+            <!-- 5. Starostlivosť & Servis -->
+            <div data-content-id="content-care" class="quick-card nav-card color-violet">
+                <div class="card-icon-wrapper violet-glow">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
+                </div>
+                <h3 data-translate-key="nav_care">Starostlivosť & Servis</h3>
+            </div>
+            
+            <!-- 6. Dôležité Kontakty -->
+            <div data-content-id="content-kontakty" class="quick-card nav-card color-cyan">
+                <div class="card-icon-wrapper cyan-glow">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                </div>
                 <h3 data-translate-key="nav_contacts">Dôležité Kontakty</h3>
             </div>
         </div>
