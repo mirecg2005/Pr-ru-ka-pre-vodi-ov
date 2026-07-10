@@ -51,12 +51,15 @@
 }
 
 html.dark body {
-    background-color: #070d19 !important;
+    background-color: #121e36 !important;
     background-image: 
-        radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.16) 0%, transparent 80%),
+        linear-gradient(rgba(18, 30, 54, 0.78), rgba(18, 30, 54, 0.88)),
+        url('lightning_bg.png'),
         linear-gradient(45deg, rgba(255, 255, 255, 0.015) 25%, transparent 25%, transparent 75%, rgba(255, 255, 255, 0.015) 75%, rgba(255, 255, 255, 0.015)),
         linear-gradient(-45deg, rgba(255, 255, 255, 0.015) 25%, transparent 25%, transparent 75%, rgba(255, 255, 255, 0.015) 75%, rgba(255, 255, 255, 0.015)) !important;
-    background-size: 100% 100%, 50px 50px, 50px 50px !important;
+    background-size: cover, cover, 50px 50px, 50px 50px !important;
+    background-position: center !important;
+    background-attachment: fixed !important;
 }
 
 @keyframes mic-pulse {
@@ -493,8 +496,8 @@ html:not(.dark) .quick-card.color-cyan:hover { border-color: #06b6d4 !important;
 
 /* Icon wrappers (Small dark square box with rounded corners) */
 .card-icon-wrapper {
-    border-radius: 18px !important;
-    padding: 12px !important;
+    border-radius: 20px !important;
+    padding: 14px !important;
     margin-bottom: 24px !important;
     display: inline-flex !important;
     align-items: center !important;
@@ -502,8 +505,8 @@ html:not(.dark) .quick-card.color-cyan:hover { border-color: #06b6d4 !important;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
     border: 1px solid rgba(255, 255, 255, 0.08) !important;
     background: rgba(255, 255, 255, 0.02) !important;
-    width: 58px;
-    height: 58px;
+    width: 68px;
+    height: 68px;
 }
 
 html:not(.dark) .card-icon-wrapper {
@@ -533,8 +536,8 @@ html:not(.dark) .card-icon-wrapper {
 
 /* SVG icons within cards */
 .quick-card svg {
-    width: 32px !important;
-    height: 32px !important;
+    width: 38px !important;
+    height: 38px !important;
     transition: transform 0.3s ease !important;
 }
 
