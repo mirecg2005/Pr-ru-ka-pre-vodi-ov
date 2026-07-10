@@ -289,6 +289,7 @@ body p { margin-bottom: 1rem; line-height: 1.5; color: inherit; opacity: 0.9; }
     -webkit-backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--card-border);
     padding: 10px 16px;
+    padding-top: calc(16px + env(safe-area-inset-top)); /* Ochranná zóna pre výrez / notch a status bar mobilu */
     margin-bottom: 30px;
     width: 100%;
 }
