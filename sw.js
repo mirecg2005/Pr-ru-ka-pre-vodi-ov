@@ -1,6 +1,7 @@
-const CACHE_NAME = 'lidl-prirucka-v1';
+const CACHE_NAME = 'lidl-prirucka-v2';
 const ASSETS = [
-    './prirucka.html',
+    './index.html',
+    './manifest.json',
     './'
 ];
 

@@ -1,0 +1,21 @@
+{
+  "short_name": "Príručka Lidl",
+  "name": "Interaktívna Príručka pre Vodičov Lidl",
+  "icons": [
+    {
+      "src": "https://i.ibb.co/6wmTNr2/1024.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "https://i.ibb.co/6wmTNr2/1024.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": "./",
+  "background_color": "#121824",
+  "theme_color": "#0050AA",
+  "display": "standalone",
+  "orientation": "portrait"
+}
