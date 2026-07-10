@@ -575,6 +575,43 @@ html.dark .accordion-content {
     box-shadow: inset 0 4px 12px rgba(0, 0, 0, 0.3) !important;
 }
 
+/* Service modal custom premium accordion headers (glowing blue dashboard cards) */
+#content-servis .accordion-header {
+    background: var(--card-bg) !important;
+    border: 1px solid rgba(59, 130, 246, 0.2) !important;
+    border-radius: 16px !important;
+    padding: 18px 22px !important;
+    color: var(--text-color) !important;
+    box-shadow: var(--shadow) !important;
+    cursor: pointer;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.3s ease, background 0.3s ease, box-shadow 0.3s ease !important;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+#content-servis .accordion-header:hover {
+    transform: translateY(-4px) scale(1.01);
+    border-color: #3b82f6 !important;
+    background: radial-gradient(circle at center, rgba(59, 130, 246, 0.08) 0%, var(--card-bg) 100%) !important;
+    box-shadow: 0 15px 30px -10px rgba(59, 130, 246, 0.35), 0 0 15px 3px rgba(59, 130, 246, 0.2) !important;
+}
+
+html.dark #content-servis .accordion-header:hover {
+    background: radial-gradient(circle at center, rgba(59, 130, 246, 0.15) 0%, var(--card-bg) 100%) !important;
+    box-shadow: 0 15px 30px -10px rgba(59, 130, 246, 0.5), 0 0 20px 4px rgba(59, 130, 246, 0.3) !important;
+}
+
+#content-servis .accordion-header svg {
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), filter 0.3s ease;
+}
+
+#content-servis .accordion-header:hover svg {
+    transform: scale(1.15);
+    filter: drop-shadow(0 0 8px #3b82f6) brightness(1.2);
+}
+
 .modal-backdrop {
     position: fixed; top: 0; left: 0; width: 100%; height: 100%;
     background: rgba(0,0,0,0.6);
@@ -1278,7 +1315,13 @@ html.dark .accordion-content {
             <!-- 1. Servis a oprava vozidla -->
             <div class="accordion-item mb-4">
                 <button class="accordion-header flex justify-between items-center w-full">
-                    <span class="font-bold">Servis a oprava vozidla</span>
+                    <div class="flex items-center">
+                        <svg class="h-6 w-6 text-blue-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                        </svg>
+                        <span class="font-bold text-slate-800 dark:text-white">Servis a oprava vozidla</span>
+                    </div>
                     <span>+</span>
                 </button>
                 <div class="accordion-content hidden space-y-4">
@@ -1321,7 +1364,12 @@ html.dark .accordion-content {
             <!-- 2. Oprava čelného skla -->
             <div class="accordion-item mb-4">
                 <button class="accordion-header flex justify-between items-center w-full">
-                    <span class="font-bold">Oprava čelného skla</span>
+                    <div class="flex items-center">
+                        <svg class="h-6 w-6 text-blue-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+                        </svg>
+                        <span class="font-bold text-slate-800 dark:text-white">Oprava čelného skla</span>
+                    </div>
                     <span>+</span>
                 </button>
                 <div class="accordion-content hidden space-y-4">
@@ -1364,20 +1412,25 @@ html.dark .accordion-content {
             <!-- 3. Servisní partneri -->
             <div class="accordion-item mb-4">
                 <button class="accordion-header flex justify-between items-center w-full">
-                    <span class="font-bold">Servisní partneri</span>
+                    <div class="flex items-center">
+                        <svg class="h-6 w-6 text-blue-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
+                        </svg>
+                        <span class="font-bold text-slate-800 dark:text-white">Servisní partneri</span>
+                    </div>
                     <span>+</span>
                 </button>
                 <div class="accordion-content hidden space-y-4">
                     <div class="space-y-3 text-sm">
-                        <div class="p-3 bg-slate-50 dark:bg-slate-800/20 rounded-xl border border-slate-200/40 dark:border-slate-700/40">
+                        <div class="p-3 bg-slate-50 dark:bg-slate-800/20 rounded-xl border border-slate-200/40 dark:border-slate-700/40 text-left">
                             <span class="font-bold text-blue-600 dark:text-blue-400 block mb-1">vozidlá BMW:</span>
                             <span class="text-slate-700 dark:text-slate-300">BMW servis, Marco Car, Bosch Car Service</span>
                         </div>
-                        <div class="p-3 bg-slate-50 dark:bg-slate-800/20 rounded-xl border border-slate-200/40 dark:border-slate-700/40">
+                        <div class="p-3 bg-slate-50 dark:bg-slate-800/20 rounded-xl border border-slate-200/40 dark:border-slate-700/40 text-left">
                             <span class="font-bold text-blue-600 dark:text-blue-400 block mb-1">vozidlá Volkswagen:</span>
                             <span class="text-slate-700 dark:text-slate-300">Todos, Dexter, Marco Car</span>
                         </div>
-                        <div class="p-3 bg-slate-50 dark:bg-slate-800/20 rounded-xl border border-slate-200/40 dark:border-slate-700/40">
+                        <div class="p-3 bg-slate-50 dark:bg-slate-800/20 rounded-xl border border-slate-200/40 dark:border-slate-700/40 text-left">
                             <span class="font-bold text-blue-600 dark:text-blue-400 block mb-1">vozidlá MINI:</span>
                             <span class="text-slate-700 dark:text-slate-300">BMW servis</span>
                         </div>
@@ -2361,7 +2414,7 @@ html.dark .accordion-content {
         synth.speak(utterance);
     };
 
-    window.initModalTextSpeech = (container) => {
+    window.initModalTextSpeech = (container, contentId) => {
         const currentLang = (document.getElementById('lang-en') && document.getElementById('lang-en').classList.contains('active')) ? 'en' : 'sk';
         
         // Vyčistiť staré tlačidlá
@@ -2372,7 +2425,8 @@ html.dark .accordion-content {
         if (!parentModal) return;
         
         const modalBodyId = container.id || (container.firstElementChild ? container.firstElementChild.id : '');
-        if (modalBodyId === 'content-emergency' || modalBodyId === 'content-servis' || modalBodyId === 'content-nehoda' || modalBodyId === 'content-porucha' || modalBodyId === 'content-kontakty') {
+        if (contentId === 'content-emergency' || contentId === 'content-servis' || contentId === 'content-nehoda' || contentId === 'content-porucha' || contentId === 'content-kontakty' ||
+            modalBodyId === 'content-emergency' || modalBodyId === 'content-servis' || modalBodyId === 'content-nehoda' || modalBodyId === 'content-porucha' || modalBodyId === 'content-kontakty') {
             return;
         }
         
@@ -3465,7 +3519,7 @@ html.dark .accordion-content {
             });
         }
 
-        const initModalInteractivity = (container) => {
+        const initModalInteractivity = (container, contentId) => {
             container.querySelectorAll('.accordion-header').forEach(header => {
                 header.addEventListener('click', () => {
                     const content = header.nextElementSibling;
@@ -3639,7 +3693,7 @@ html.dark .accordion-content {
             });
             initWarningLightsInteractivity(container);
             initSpeedFineCalculator(container);
-            initModalTextSpeech(container);
+            initModalTextSpeech(container, contentId);
         };
 
         const backModalBtn = document.getElementById('back-modal-btn');
@@ -3682,7 +3736,7 @@ html.dark .accordion-content {
                 activeCard = cardElement;
                 if (activeCard && activeCard.classList) activeCard.classList.add('active-card');
                 
-                initModalInteractivity(modalBody);
+                initModalInteractivity(modalBody, contentId);
 
                 // Push state to browser history for native back button support
                 isModalPushingState = true;
@@ -3754,7 +3808,7 @@ html.dark .accordion-content {
                     activeCard = card;
                     if (activeCard && activeCard.classList) activeCard.classList.add('active-card');
                     
-                    initModalInteractivity(modalBody);
+                    initModalInteractivity(modalBody, event.state.contentId);
                 }
                 isModalPushingState = false;
             } else {
