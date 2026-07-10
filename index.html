@@ -2673,7 +2673,7 @@ html.dark .accordion-content {
                 main_title: "Príručka pre Vodičov", main_subtitle: "Váš interaktívny sprievodca pre služobné vozidlá Lidl",
                 quick_actions_title: "Rýchle Akcie a Núdzové Situácie", accident_title: "Mám nehodu", accident_subtitle: "Okamžitý postup krok za krokom.",
                 service_title: "Potrebujem servis", service_subtitle_quick: "Objednajte si opravu alebo údržbu.",
-                breakdown_title: "Pokazilo sa mi auto, alebo mám defekt", breakdown_subtitle: "Kontakt na asistenčnú službu.",
+                breakdown_title: "Rozbilo sa mi auto alebo mám defekt", breakdown_subtitle: "Kontakt na asistenčnú službu.",
                 categories_title: "Informačné Kategórie", nav_rules: "Základné Pravidlá", nav_legal_rules: "Zákonné Pravidlá",
                 nav_fueling: "Tankovanie", nav_fueling_abroad: "Tankovanie v Zahraničí", nav_maintenance: "Údržba a Pneu",
                 nav_insurance: "Poistné Udalosti", nav_logbook: "Kniha Jázd", nav_fines: "Pokuty", nav_new_car: "Nové Vozidlo",
@@ -3129,7 +3129,6 @@ html.dark .accordion-content {
             const emergencyDiv = document.createElement('div');
             emergencyDiv.id = 'content-emergency';
             emergencyDiv.innerHTML = `
-                <p class="text-center text-lg mb-6 font-semibold" data-translate-key="emergency_subtitle" style="opacity: 0.85;">Nehoda, porucha, odťah alebo defekt.</p>
                 <div class="grid grid-cols-2 gap-4">
                     <div data-internal-link="content-nehoda" class="nav-card red-tile">
                         <span class="tile-emoji">💥</span>
@@ -3137,7 +3136,7 @@ html.dark .accordion-content {
                     </div>
                     <div data-internal-link="content-porucha" class="nav-card yellow-tile">
                         <span class="tile-emoji">🔧</span>
-                        <h3 class="font-bold text-lg" data-translate-key="breakdown_title">Pokazilo sa mi auto</h3>
+                        <h3 class="font-bold text-lg" data-translate-key="breakdown_title">Rozbilo sa mi auto alebo mám defekt</h3>
                     </div>
                 </div>
             `;
@@ -3552,7 +3551,8 @@ html.dark .accordion-content {
                 const titleElement = cardElement ? cardElement.querySelector('h3, span.font-semibold') : null;
                 let titleText = 'Informácie';
                 
-                if (contentId === 'content-nehoda') titleText = (currentLang === 'en' ? 'Traffic Accident' : 'Dopravná nehoda');
+                if (contentId === 'content-emergency') titleText = '';
+                else if (contentId === 'content-nehoda') titleText = (currentLang === 'en' ? 'Traffic Accident' : 'Dopravná nehoda');
                 else if (contentId === 'content-porucha') titleText = (currentLang === 'en' ? 'Car Breakdown' : 'Porucha vozidla');
                 else if (contentId === 'content-prevadzka') titleText = (currentLang === 'en' ? 'Daily Operation' : 'Každodenná prevádzka');
                 else if (contentId === 'content-care') titleText = (currentLang === 'en' ? 'Care & Service' : 'Starostlivosť & Servis');
